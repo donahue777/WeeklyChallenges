@@ -32,22 +32,88 @@ namespace ChallengesWithTestsMark8
 
         public bool IsPrimeNumber(int num)
         {
-            throw new NotImplementedException();
+            if (num <= 1)
+            {
+                return false; // Numbers less than or equal to 1 are not prime
+            }
+
+            for (int i = 2; i <= Math.Sqrt(num); i++)
+            {
+                if (num % i == 0)
+                {
+                    return false; // If num is divisible by any number other than 1 and itself, it's not prime
+                }
+            }
+
+            return true;
         }
 
         public int IndexOfLastUniqueLetter(string str)
         {
-            throw new NotImplementedException();
+            int index = -1;
+            bool uIndex;
+
+            for(int i = 0; i < str.Length; i++)
+            {
+                uIndex = true;
+
+                for(int k = 0; k < str.Length; k++)
+                {
+                    if (str[i] == str[k] && i != k)
+                    {
+                        uIndex = false;
+                    }
+                }
+                if(uIndex == true)
+                {
+                    index = i;
+                }
+            }
+            return index;
         }
 
         public int MaxConsecutiveCount(int[] numbers)
         {
-            throw new NotImplementedException();
+            if (numbers == null || numbers.Length == 0)
+            {
+                return 0;
+            }
+
+            int maxCount = 1;
+            int currentCount = 1;
+
+            for (int i = 1; i < numbers.Length; i++)
+            {
+                if (numbers[i] == numbers[i - 1])
+                {
+                    currentCount++;
+                    maxCount = Math.Max(maxCount, currentCount);
+                }
+                else
+                {
+                    currentCount = 1;
+                }
+            }
+
+            return maxCount;
         }
 
         public double[] GetEveryNthElement(List<double> elements, int n)
         {
-            throw new NotImplementedException();
+            List<double> nthElement = new List<double>();
+
+            if (elements == null || n <= 0 || n > elements.Count())
+            {
+                return nthElement.ToArray();
+            }
+
+
+            for (int i = n - 1; i < elements.Count; i += n)
+            {
+                nthElement.Add(elements[i]);
+            }
+
+            return nthElement.ToArray();
         }
     }
 }
